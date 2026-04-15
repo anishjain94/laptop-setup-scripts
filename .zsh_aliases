@@ -1,0 +1,131 @@
+#====================
+# General Aliases
+#====================
+alias c="clear"
+alias h="history"
+alias hg="history | grep "
+alias ag="alias | grep "
+alias path='echo -e ${PATH//:/\\n}'
+alias j="z"
+
+# Safe file operations
+alias mv="mv -v"     # verbose mode - print source and destination
+alias cp="cp -v"     # verbose mode - print copied files
+command -v trash > /dev/null 2>&1 && alias rm="trash"
+
+# Better alternatives for common commands
+command -v bat > /dev/null 2>&1 && alias cat="bat"
+command -v eza > /dev/null 2>&1 && alias ls="eza"
+
+#====================
+# Directory Navigation
+#====================
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias dot="cd ~/dotfiles"
+alias ohmyzsh="cd ~/.oh-my-zsh"
+alias sshdir="cd ~/.ssh"
+
+#====================
+# Config File Shortcuts
+#====================
+alias aliases="vi ~/dotfiles/zsh/.zsh_aliases"
+alias gitc="vi ~/dotfiles/git/.gitconfig"
+alias vimc="vi ~/dotfiles/vim/.vimrc"
+alias zshrc="vi ~/dotfiles/zsh/.zshrc"
+
+#====================
+# Development Tools
+#====================
+# Python
+alias i="ipython"
+alias python="python3"
+
+# Visual Studio Code
+alias vsc="open -a 'Visual Studio Code'"
+
+#====================
+# Git Commands
+#====================
+# Basic operations
+alias ga="git add"
+alias gap="git add -p"
+alias gc="git clone"
+alias gs="git status"
+alias gss="git status -s"
+alias gd="git diff"
+alias gds="git diff --staged"
+
+# Branch operations
+alias gb="git branch"
+alias gbv="git branch -v"
+alias gbd="git branch -D"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+
+# Commit operations
+alias gcm="git commit -m"
+alias gca="git commit --amend"
+alias gcane="git commit --amend --no-edit"
+alias gu="git reset HEAD^" # Undo the most recent commit but keep the changes
+
+# Remote operations
+alias gl="git pull"
+alias gp="git push"
+alias grv="git remote -v"
+
+# Log and history
+alias glo="git log --oneline"
+alias glog="git log --stat"
+alias glp="git log --pretty=format:'%C(yellow)%h%Creset - %C(green)%an%Creset, %ar : %s'"
+alias glc="git local-commits" # List of commits on your local that haven't been pushed
+alias gsl="git shortlog"
+
+# Stash operations
+alias gst="git stash"
+alias gste="git stash-everything" # Stash everything including untracked files
+
+# Reset operations
+alias gr="git reset"
+alias grhh="git reset --hard HEAD"
+
+# GitHub specific
+alias ghpr="git push && gh pr create --web -a @me"
+
+#====================
+# Container Operations
+#====================
+# Docker
+alias d="docker"
+alias dcls="docker container ls"
+alias dils="docker image ls"
+
+# Docker Compose
+alias dcupd="docker compose up -d"
+alias dcdn="docker compose down"
+
+# Kubernetes
+command -v kubecolor > /dev/null 2>&1 && alias kubectl="kubecolor"
+alias k="kubectl"
+alias krrd="kubectl rollout restart deployment"
+alias krrss="kubectl rollout restart statefulset"
+alias kctx="kubectx"
+alias kns="kubens"
+
+#====================
+# Custom Functions
+#====================
+# Create and change to directory
+mkcd() {
+    mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+# Copy file contents to clipboard
+catc() {
+    cat "$@" | pbcopy
+}
+
+# Base64 Decode
+b64d() {
+    echo -n "$1" | base64 --decode
+}

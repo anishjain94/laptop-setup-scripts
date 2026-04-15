@@ -138,6 +138,8 @@ install_brew_cask slack
 install_brew_cask whatsapp
 install_brew_cask dbeaver-community
 install_brew_cask betterdisplay
+install_brew_cask warp
+install_brew_cask cursor
 
 # Run customizations from ~/.laptop.local if present
 if [ -f "$HOME/.laptop.local" ]; then
@@ -149,6 +151,9 @@ fi
 # Set default key repeat rate to some sane values
 defaults write -g InitialKeyRepeat -int 25
 defaults write -g KeyRepeat -int 2
+
+# Increase mouse sensitivity (tracking speed) to maximum
+defaults write -g com.apple.mouse.scaling -float 3.0
 
 # Enable three-finger drag
 defaults write com.apple.AppleMultitouchTrackpad DragLock -bool false
