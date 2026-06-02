@@ -235,7 +235,10 @@ source $ZSH/oh-my-zsh.sh
 export VAULT_SKIP_VERIFY=true
 
 export PATH=$PATH:$(go env GOPATH)/bin
-alias ghpr="gh pr create --web -a @me"
+ghpr() {
+    local branch=$(git branch --show-current)
+    git push --set-upstream origin "$branch" && gh pr create --web -a @me "$@"
+}
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
 export PATH="/Applications/IntelliJ IDEA CE.app/Contents/MacOS:$PATH"
 
